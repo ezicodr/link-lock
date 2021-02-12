@@ -38,8 +38,8 @@ function validateInputs() {
     urlObj = new URL(url.value);
   } catch {
     if (!("reportValidity" in url)) {
-      alert("URL invalid. Make sure to include 'http://' or 'https://' at the "
-          + "beginning.");
+      alert("URL tidak sah. Pastikan terdapat 'http://' atau 'https://' pada "
+          + "awal URL.");
     }
     return false;
   }
