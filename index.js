@@ -8,11 +8,11 @@ async function main() {
   if (window.location.hash) {
     // Fail if the b64 library or API was not loaded
     if (!("b64" in window)) {
-      error("Base64 library not loaded.");
+      error("Base64 library tidak di'load'.");
       return;
     }
     if (!("apiVersions" in window)) {
-      error("API library not loaded.");
+      error("API library tidak di'load'.");
       return;
     }
 
@@ -22,19 +22,19 @@ async function main() {
     try {
       params = JSON.parse(b64.decode(hash));
     } catch {
-      error("The link appears corrupted.");
+      error("Terdapat kesilapan pada pautan yang diberi.");
       return;
     }
 
     // Check that all required parameters encoded in the URL are present
     if (!("v" in params && "e" in params)) {
-      error("The link appears corrupted. The encoded URL is missing necessary parameters.");
+      error("Pautan yang diberikan tidak sah. URL yang dikod tidak mengandungi parameter yang diperlukan.");
       return;
     }
 
     // Check that the version in the parameters is valid
     if (!(params["v"] in apiVersions)) {
-      error("Unsupported API version. The link may be corrupted.");
+      error("Versi API tidak disokong. Pautan mungkin tidak sah.");
       return;
     }
 
@@ -48,9 +48,9 @@ async function main() {
     let hint, password;
     if ("h" in params) {
       hint = params["h"];
-      password = prompt(`Please enter the password to unlock the link.\n\nHint: ${hint}`);
+      password = prompt(`Masukkan kata laluan untuk membukan pautan.\n\nHint: ${hint}`);
     } else {
-      password = prompt("Please enter the password to unlock the link.");
+      password = prompt("Masukkan kata laluan untuk membukan pautan.");
     }
 
     // Decrypt and redirect if possible
@@ -59,15 +59,15 @@ async function main() {
       url = await api.decrypt(encrypted, password, salt, iv);
     } catch {
       // Password is incorrect.
-      error("Password is incorrect.");
+      error("Kata laluan salah.");
 
       // Set the "decrypt without redirect" URL appropriately
       document.querySelector("#no-redirect").href =
-        `https://jstrieb.github.io/link-lock/decrypt/#${hash}`;
+        `https://ezicodr.github.io/link-lock/decrypt/#${hash}`;
 
       // Set the "create hidden bookmark" URL appropriately
       document.querySelector("#hidden").href =
-        `https://jstrieb.github.io/link-lock/hidden/#${hash}`;
+        `https://ezicodr.github.io/link-lock/hidden/#${hash}`;
       return;
     }
 
@@ -80,8 +80,8 @@ async function main() {
       if (!(urlObj.protocol == "http:"
             || urlObj.protocol == "https:"
             || urlObj.protocol == "magnet:")) {
-        error(`The link uses a non-hypertext protocol, which is not allowed. `
-            + `The URL begins with "${urlObj.protocol}" and may be malicious.`);
+        error(`Pautan menggunakan protokol selain hiperteks yang tidak sah. `
+            + `URL bermula dengan "${urlObj.protocol}" dan mungkin berbahaya.`);
         return;
       }
 
@@ -91,7 +91,7 @@ async function main() {
       // the unlocked destination. This is dangerous information leakage.
       window.location.href = url;
     } catch {
-      error("A corrupted URL was encrypted. Cannot redirect.");
+      error("URL tidak sah telah disulitkan. Gagal untuk dilencongkan (redirect).");
       console.log(url);
       return;
     }
