@@ -1,6 +1,8 @@
 /**
  * Created by Jacob Strieb
  * May 2020
+ * Modified by ezicodr
+ * Feb 2021
  */
 
 
@@ -49,9 +51,9 @@ function validateInputs() {
   if (!(urlObj.protocol == "http:"
         || urlObj.protocol == "https:"
         || urlObj.protocol == "magnet:")) {
-    url.setCustomValidity("The link uses a non-hypertext protocol, which is "
-        + "not allowed. The URL begins with " + urlObj.protocol + " and may be "
-        + "malicious.");
+    url.setCustomValidity("Pautan tidak menggunakan protokol hiperteks, yang mana "
+        + "tidak sah. URL bermula dengan " + urlObj.protocol + " dan berkemungkinan "
+        + "mengandungi kandungan jahat.");
     url.reportValidity();
     return false;
   }
@@ -107,7 +109,7 @@ async function onEncrypt() {
   const confirmPassword = document.querySelector("#confirm-password")
   const confirmation = confirmPassword.value;
   if (password != confirmation) {
-    confirmPassword.setCustomValidity("Passwords do not match");
+    confirmPassword.setCustomValidity("Kata laluan tidak sepadan.");
     confirmPassword.reportValidity();
     return;
   }
@@ -121,13 +123,13 @@ async function onEncrypt() {
 
   const encrypted = await generateFragment(url, password, hint, useRandomSalt,
       useRandomIv);
-  const output = `https://jstrieb.github.io/link-lock/#${encrypted}`;
+  const output = `https://ezicodr.github.io/link-lock/#${encrypted}`;
 
   document.querySelector("#output").value = output;
   highlight("output");
 
   // Adjust "Hidden Bookmark" link
-  document.querySelector("#bookmark").href = `https://jstrieb.github.io/link-lock/hidden/#${encrypted}`;
+  document.querySelector("#bookmark").href = `https://ezicodr.github.io/link-lock/hidden/#${encrypted}`;
 
   // Adjust "Open in New Tab" link
   document.querySelector("#open").href = output;
