@@ -19,7 +19,7 @@ function onBruteForce() {
   try {
     url = new URL(urlText);
   } catch {
-    error("Entered text is not a valid URL. Make sure it includes \"https://\" too!");
+    error("Teks yang dimasukkan bukan format URL yang sah. Pastikan ia mengandungi \"https://\" !");
     return;
   }
 
