@@ -3,6 +3,9 @@
 [Password-protect URLs using AES in the
 browser.](https://jstrieb.github.io/link-lock)
 
+Link Lock now supports secure, hidden bookmarks via bookmark knocking! Read
+more [here](https://jstrieb.github.io/projects/hidden-bookmarks).
+
 
 
 ## About
@@ -91,6 +94,8 @@ me to build a secure encryption application. In particular:
 ## Usage
 
 - Create a locked link here: [https://jstrieb.github.io/link-lock](https://jstrieb.github.io/link-lock).
+- Once you have a locked link, create a hidden bookmark here:
+  <https://jstrieb.github.io/link-lock/hidden>.
 - Use the advanced options when creating a link to make the encryption more
   secure (at the cost of a longer link).
     - By default, the initialization vector is randomized for security, but
@@ -105,8 +110,10 @@ me to build a secure encryption application. In particular:
   curse if you are not careful!
 - Currently, the only way to recover a lost password is by trying all possible
   options (very slowly) by brute force. An example application to brute force
-  Link Lock URLs can be found here:
+  Link Lock URLs in the browser can be found here:
   [https://jstrieb.github.com/link-lock/bruteforce](https://jstrieb.github.com/link-lock/bruteforce/).
+- A parallelized, cross-platform, CPU-based brute forcer can be found here:
+  <https://github.com/jstrieb/bruteforce-link-lock>
 - If you receive a Link Lock URL that you do not trust, decrypt it using this
   interface that does not automatically redirect:
   [https://jstrieb.github.com/link-lock/decrypt](https://jstrieb.github.com/link-lock/decrypt/).
