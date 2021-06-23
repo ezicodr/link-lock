@@ -1,7 +1,5 @@
 (() => {
-
 var b64 = (() => {
-
   function generateIndexDict(a) {
     let result = {};
     for (let i = 0; i < a.length; i++) {
@@ -96,9 +94,12 @@ const hash = window.location.hash.slice(1);
 try {
   const decoded = b64.decode(hash);
   const params = JSON.parse(decoded);
-  window.location.href = "https://jstrieb.github.io/link-lock/" + window.location.hash;
+  if (params.unencrypted) {
+    window.location.href = params.url;
+  } else {
+    window.location.href = "https://jstrieb.github.io/link-lock/" + window.location.hash;
+  }
 } catch {
   window.location.replace("https://gmail.com");
 }
-
 })();
